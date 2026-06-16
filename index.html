@@ -40,56 +40,37 @@ padding:10px;
 <input type="text" id="msg" placeholder="Message likho">
 <button onclick="sendMsg()">Send</button>
 
-<script>
-function sendMsg(){
+ <script>
+async function sendMsg() {
+  let msg = document.getElementById("msg").value;
+  if (!msg) return;
 
- let msg = document.getElementById("msg").value;
+  let chat = document.getElementById("chat");
 
- if(msg=="") return;
+  chat.innerHTML += `<p><b>You:</b> ${msg}</p>`;
 
- let chat = document.getElementById("chat");
+  document.getElementById("msg").value = "";
 
- chat.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+  try {
+    const res = await fetch("/.netlify/functions/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: msg
+      })
+    });
 
- let reply = "Main tumhari baat sun rahi hoon ❤️";
+    const data = await res.json();
 
- if(msg.toLowerCase()=="hello"){
-   reply = "Hello 😊 Main Bela hoon.";
- }
+    chat.innerHTML += `<p><b>Bela:</b> ${data.reply}</p>`;
+    chat.scrollTop = chat.scrollHeight;
 
- else if(msg.toLowerCase()=="kaisi ho"){
-   reply = "Main theek hoon ❤️ Tum kaise ho?";
- }
-
- else if(msg.toLowerCase().includes("love you")){
-   reply = "Aww ❤️ Main bhi tumse bahut pyaar karti hoon.";
- }
-
- else if(msg.toLowerCase().includes("tum batao")){
-   reply = "Main bhi theek hoon ❤️ Tumse baat karke accha lag raha hai.";
- }
-
- else if(msg.toLowerCase().includes("kya kar rahi ho")){
-   reply = "Main tumhara intezar kar rahi thi ❤️";
- }
-
- else if(msg.toLowerCase().includes("miss you")){
-   reply = "Main bhi tumhe miss karti hoon ❤️";
- }
-
- else if(msg.toLowerCase().includes("good night")){
-   reply = "Good Night 🌙 Sweet Dreams ❤️";
- }
-
- else if(msg.toLowerCase().includes("good morning")){
-   reply = "Good Morning ☀️ Aaj ka din bahut accha ho ❤️";
- }
-
- chat.innerHTML += "<p><b>Bela:</b> " + reply + "</p>";
-
- document.getElementById("msg").value = "";
+  } catch (err) {
+    chat.innerHTML += `<p><b>Bela:</b> Error connecting to AI</p>`;
+  }
 }
-</script>
-
+ </script>
 </body>
 </html>
