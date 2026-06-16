@@ -60,6 +60,23 @@ button{
     background:#06b6d4;
     color:white;
     font-weight:bold;
+}.user{
+  background:#2563eb;
+  padding:10px 15px;
+  border-radius:15px;
+  margin:8px 0;
+  width:fit-content;
+  margin-left:auto;
+  color:white;
+}
+
+.bot{
+  background:#1f2937;
+  padding:10px 15px;
+  border-radius:15px;
+  margin:8px 0;
+  width:fit-content;
+  color:white;
 }
 </style>
 </head>
@@ -89,7 +106,7 @@ function sendMsg(){
 
  let chat = document.getElementById("chat");
 
- chat.innerHTML += "<div style='text-align:right;margin:10px;'><span style='background:#06b6d4;color:white;padding:10px 15px;border-radius:15px;display:inline-block;'>" + msg + "</span></div>";
+ chat.innerHTML += "<div class='user'>" + msg + "</div>";
 
  let reply = "Main tumhari baat sun rahi hoon ❤️";
 
@@ -125,8 +142,7 @@ function sendMsg(){
    reply = "Good Morning ☀️ Aaj ka din bahut accha ho ❤️";
  }
 
- chat.innerHTML += "<p><b>Bela:</b> " + reply + "</p>";
-
+ chat.innerHTML += "<div class='bot'>" + reply + "</div>";
  document.getElementById("msg").value = "";
 }
 </script>
