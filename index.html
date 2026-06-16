@@ -99,47 +99,127 @@ border-radius:25px;
 }
 
 .login-card{
-  width:100%;
-  max-width:350px;
-  background:white;
-  padding:25px;
-  border-radius:30px;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(255,77,109,.25);
+    width:90%;
+    max-width:400px;
+    text-align:center;
+    background:transparent;
 }
 
 .character img{
-  width:180px;
-  transition:.3s;
+    width:280px;
+    animation:floatGirl 3s ease-in-out infinite;
 }
 
-.logo{
-  font-size:28px;
-  font-weight:bold;
-  color:#ff4d8d;
-  margin-bottom:15px;
+@keyframes floatGirl{
+    50%{
+        transform:translateY(-10px);
+    }
 }
 
 #username,
 #password{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:25px;
-  background:#f3f3f3;
-  box-sizing:border-box;
+    width:100%;
+    padding:18px;
+    margin-top:15px;
+    border:none;
+    border-radius:50px;
+
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(15px);
+
+    color:white;
+    font-size:18px;
+
+    box-shadow:
+    0 0 20px rgba(255,255,255,.3),
+    inset 0 0 20px rgba(255,255,255,.2);
+
+    box-sizing:border-box;
 }
 
 button{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:25px;
-  background:#ff4d8d;
-  color:white;
-  font-size:18px;
+    width:100%;
+    padding:18px;
+    margin-top:20px;
+    border:none;
+    border-radius:50px;
+
+    background:linear-gradient(
+        45deg,
+        #ff1493,
+        #ff69b4
+    );
+
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+
+    box-shadow:0 0 25px hotpink;
 }
-</style>
+
+  .character{
+    position:relative;
+}
+
+.character img{
+    width:100%;
+    max-width:380px;
+    animation:floatGirl 3s ease-in-out infinite;
+}
+
+@keyframes floatGirl{
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+    color:white;
+    text-shadow:0 0 15px hotpink;
+}
+
+#username,
+#password{
+    width:85%;
+    padding:18px;
+    margin-top:15px;
+
+    border:none;
+    border-radius:50px;
+
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(15px);
+
+    color:white;
+    font-size:18px;
+
+    box-shadow:
+      0 0 20px rgba(255,255,255,.3),
+      inset 0 0 20px rgba(255,255,255,.2);
+}
+
+button{
+    width:85%;
+    padding:18px;
+    margin-top:20px;
+
+    border:none;
+    border-radius:50px;
+
+    background:linear-gradient(
+      45deg,
+      #ff1493,
+      #ff69b4
+    );
+
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+
+    box-shadow:0 0 25px hotpink;
+}  
   
 </head>
 
@@ -187,13 +267,8 @@ Login
 
   if(username === "" || password === ""){
     alert("Username aur Password bharo");
-    return;
-  }
-
-  alert("Login Successful ❤️");
-
-  }
-async function sendMsg() {
+    retursendMsgalert("Login Successful ❤️");
+sendMsgync function sendMsg() {
     let msg = document.getElementById("msg").value;
     if (!msg) return;
 
@@ -202,8 +277,7 @@ async function sendMsg() {
     chat.innerHTML += `<div class="user">${msg}</div>`;
     document.getElementById("msg").value = "";
 
-    try {
-        const res = await fetch("/.netlify/functions/chat", {
+    tryjsoncationcationnt-Typent-Type      const res = await fetch("/.netlify/functions/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -211,7 +285,7 @@ async function sendMsg() {
             body: JSON.stringify({
                 message: msg
             })
-        });
+    data});
 
         const data = await res.json();
 
@@ -221,8 +295,7 @@ async function sendMsg() {
     } catch (err) {
         chat.innerHTML += `<div class="bela">Connection error 😢</div>`;
     }
-}
-</script>
+htmlscript>
 
 </body>
 </html>
