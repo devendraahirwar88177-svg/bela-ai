@@ -6,7 +6,12 @@
 body{
 margin:0;
 font-family:Arial,sans-serif;
-background:linear-gradient(180deg,#ffe4ec,#f3f4f6);
+background:linear-gradient(
+180deg,
+#ffd6e7,
+#ffc2d1,
+#ffb3c6
+);
 height:100vh;
 display:flex;
 flex-direction:column;
@@ -85,23 +90,109 @@ border-radius:25px;
     opacity:1;
   }
   }
+  .login-container{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.login-card{
+  width:100%;
+  max-width:350px;
+  background:white;
+  padding:25px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(255,77,109,.25);
+}
+
+.character img{
+  width:180px;
+  transition:.3s;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  color:#ff4d8d;
+  margin-bottom:15px;
+}
+
+#username,
+#password{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:25px;
+  background:#f3f3f3;
+  box-sizing:border-box;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:25px;
+  background:#ff4d8d;
+  color:white;
+  font-size:18px;
+}
 </style>
+  
 </head>
 
 <body>
 
-<div class="header">❤️ Bela AI ❤️</div>
+<div class="login-container">
 
-<div id="chat">
-<div class="bela">Hi, main Bela hoon ❤️</div>
+<div class="login-card">
+
+<div class="character">
+<img id="girl" src="anime-girl.png">
 </div>
 
-<div class="bottom">
-  <input type="text" id="msg" placeholder="Message Bela..." />
-  <button onclick="sendMsg()">Send</button>
+<div class="logo">
+❤️ Bela AI ❤️
+</div>
+
+<input
+type="text"
+id="username"
+placeholder="Username">
+
+<br><br>
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<br><br>
+
+<button onclick="login()">
+Login
+</button>
+
+</div>
+
 </div>
 
 <script>
+  function login() {
+
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+
+  if(username === "" || password === ""){
+    alert("Username aur Password bharo");
+    return;
+  }
+
+  alert("Login Successful ❤️");
+
+  }
 async function sendMsg() {
     let msg = document.getElementById("msg").value;
     if (!msg) return;
